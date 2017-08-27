@@ -1,0 +1,67 @@
+#!/usr/bin/env node
+
+process.title = 'node-noodle';
+
+var connect  = require('connect'),
+    http     = require('http'),
+    url      = require('url'),
+    fs       = require('fs'),
+    limiter  = require('connect-ratelimit'),
+    noodlemw = require('../lib/noodle-middleware'),
+    version  = getVersion(),
+    limits   = getConfig().rateLimit,
+    port     = process.argv[2] || 8888,
+    app;
+
+    limits.end = false;
+
+    app      = connect()
+              .use(function (req, res, next) {
+                if (url.parse(req.url).pathname === '/version') {
+                  res.writeHead(200, {
+                    'Content-Type': 'application/json; charset=utf-8'
+                  });
+                  res.end('{"version":' + version + '}');
+                } else {
+                  next();
+                }
+              })
+              .use(limiter(limits))
+              .use(function (req, res, next) {
+                if (res.ratelimit.exceeded) {
+                  res.statusCode = 429;
+                  res.end('[{"results": [], "error": "Rate limit exceeded"}]');
+                } else {
+                  next();
+                }
+              })
+              .use(connect.query())
+              .use(connect.json())
+              .use(noodlemw.parseQueries)
+              .use(noodlemw.noodleQueries)
+              .use(noodlemw.respond);
+
+http.createServer(app).listen(port, function () {
+  require('colors');
+  with (console) {
+    log(' Noodle node server started'.magenta);
+    log(' ├ process title '.magenta, process.title.toString().green);
+    log(' ├ process pid   '.magenta, process.pid.toString().green);
+    log(' └ server port   '.magenta, port.toString().green);
+  }
+});
+
+// Return the noodle config as an object
+
+function getConfig () {
+  var path   = require('path').resolve(__dirname, '../lib/config.json'),
+      config = fs.readFileSync(path).toString();
+  return JSON.parse(config);
+}
+
+// Return the noodle version number
+
+function getVersion () {
+  var path = require('path').resolve(__dirname, '../package.json');
+  return JSON.parse(fs.readFileSync(path).toString()).version;
+}

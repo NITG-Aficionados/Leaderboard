@@ -1,0 +1,18 @@
+extends layout
+
+block content
+	div#logdiv.container(style="background-color:rgba(0,0,0,0.6);")
+		.wrap
+			h1 Login
+			h3 -----X-----
+
+			form(method='post',action='/users/login')
+				div
+					label(for='username') Username
+					input#uname.cool(name='username',type='text')
+				div
+					label(for='password') Password
+					input#passwd.cool(name='password',type='password')
+				div(style="text-align:center;")
+					input#submit.cool(name='submit',value='Submit',type='submit')
+	p#logcopy(style="text-align:center;margin-bottom:30px;") Copyright &copy Aficionados 2017 							

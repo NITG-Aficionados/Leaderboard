@@ -1,0 +1,84 @@
+extends layout
+
+block content
+	div#imgcont.container(style="margin-top:100px;")
+		.row
+			div#imagediv.col-md-5(style="background-color:rgba(0,0,0,0.7);text-align:center;border-radius:10px;margin:20px;padding:0px;")
+
+				img.img-circle.img-responsive(src="/images/#{img}",style="width:250px;height:250px;margin-right:0;display:inline-block;border:3px #ff6432 dotted;")
+				a(href="/users/#{username}/edit")
+					button.btn.btn-primary(type='button') Edit
+				h2.sm(style="margin:30px;")=name
+				h4 a.k.a.
+				h2.sm(style="margin:30px;")=username
+				h2.sm(style="margin:30px;") Email : #{email}
+				h2.sm(style="margin:30px;") Bio :
+					span
+						h4=bio
+				h2.sm(style="margin:30px;") ---Interests---
+				h4=interests
+
+
+
+			#tab.col-md-5
+				.table-responsive(style="background-color:transparent;")
+					table.table.borderless
+						thead
+							tr
+								th Judge
+								th Username
+								th Scrape
+								th Ratings
+						tbody
+							tr(style="border-bottom:1px grey dotted;")
+								td Codeforces
+
+								td 
+									input#cft(type='text')
+								td
+									button#cfb.btn.btn-primary(type='button') Load
+								td
+									p#cfr=cfr				
+							tr(style="border-top:1px grey dotted;")
+								td TopCoder
+								td 
+									input#tct(type='text')
+								td
+									button#tcb.btn.btn-primary(type='button') Load
+								td
+									p#tcr=tcr				
+							tr(style="border-top:1px grey dotted;")
+								td CodeChef
+								td 
+									input#cct(type='text')
+								td
+									button#ccb.btn.btn-primary(type='button') Load
+								td
+									p#ccr=ccr				
+							tr(style="border-top:1px grey dotted;")
+								td Hackerrank
+								td 
+									input#hrt(type='text')
+								td
+									button#hrb.btn.btn-primary(type='button') Load
+								td
+									p#hrr=hrr				
+							tr(style="border-top:1px grey dotted;")
+								td Hackerearth
+								td 
+									input#het(type='text')
+								td
+									button#heb.btn.btn-primary(type='button') Load
+								td
+									p#her=her
+				p(style="text-align:left;") *please use your own handles.
+				hr(style="border:2px #ff6432 dotted")									
+				div
+					h2 Your Aficionados Index !
+					h1#index=index
+					h3 Current Rank
+					h2#cr=cr
+					h3 Contributors Rank
+					h2 N/A
+					button#rb.btn.btn-primary(type='button') Refresh
+	p(style="text-align:center;margin-bottom:30px;margin-top:50px;") Copyright &copy Aficionados 2017

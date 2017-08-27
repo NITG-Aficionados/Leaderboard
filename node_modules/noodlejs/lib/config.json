@@ -1,0 +1,34 @@
+{
+  "debug":                 true,
+
+  "resultsCacheMaxTime":   3600000,
+  "resultsCachePurgeTime": 60480000,
+  "resultsCacheMaxSize":   124,
+
+  "pageCacheMaxTime":      3600000,
+  "pageCachePurgeTime":    60480000,
+  "pageCacheMaxSize":      32,
+
+  "defaultDocumentType":   "html",
+
+  "userAgent":             "",
+
+  "rateLimit": {
+    "whitelist": ["127.0.0.1", "localhost"],
+    "blacklist": [],
+    "catagories": {
+      "normal": {
+        "totalRequests": 1000,
+        "every":         3600000000
+      },
+      "whitelist": {
+        "totalRequests": 10000,
+        "every":         60000000
+      },
+      "blacklist": {
+        "totalRequests": 0,
+        "every":         0
+      }
+    }
+  }
+}

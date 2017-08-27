@@ -1,0 +1,441 @@
+body {
+  padding: 50px;
+  font: 14px "Ubuntu Mono", Helvetica, Arial, sans-serif;
+  color: #ff6432;
+}
+
+
+html,body{
+	overflow-y: scroll; 
+}
+
+.container-fluid {
+    padding-right: 0px;
+}
+a {
+  color: #ff6432;
+}
+
+html, body {
+ width: 100%;
+ height: 100%;
+ padding: 0;
+ margin: 0;
+ background: transparent;
+}
+
+#main{
+	margin-top:12em;
+}
+#faq{
+	margin-top:150px;
+}
+h1{
+    font-size: 2em;
+    font-family: 'Ubuntu Mono';
+    color: #ff6432;
+    z-index: 2;
+
+}
+
+.navbar-nav {
+    margin: 0;
+}
+
+
+.navbar-default {
+    background-color:black;
+    border-color: #e7e7e7;
+}
+
+
+.navbar-default .navbar-brand {
+    color: #ff6432;
+    font-size: 2em;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #777;
+    font-size: 1.2em;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: transparent;
+}
+.jumbotron>p>a{
+	border-bottom: 1px #456 dotted;
+}
+
+
+#zodiac {
+     width: 100%;
+     height: 100%;
+     position: absolute;
+     z-index: -1;
+}
+
+#messages{
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+	text-align: center;
+	list-style: none;
+	border:1px #ff6432 dotted;
+	top:100px;
+	font-size: 1em;
+	border-radius: 5px;
+	height: 40px;
+	padding-top: 9px;
+	background-color: rgba(0,0,0,0.6)
+}
+.succes{
+	padding-left: 0;
+}
+
+#fa{
+	margin-top: 150px;
+}
+.table > thead > tr > th {
+	border-bottom: 2px grey dotted;
+}
+.table > tbody > tr > td{
+	border-top:1px grey dotted;
+}
+
+.table-responsive{
+	border:2px grey dotted;
+	border-radius: 5px;
+}
+
+/*/////////////////////////*/
+
+.arrow {
+	width: 60px;
+	height: 82px;
+	position: relative;
+	left: 50%;
+	margin-left: -30px;
+	bottom: 20px;
+}
+
+/* sets arrow style */
+.arrow path {
+	stroke: #ff6432;
+	fill: transparent;
+	stroke-width: 3px;	
+	animation: arrow 2s infinite;
+	-webkit-animation: arrow 2s infinite; 
+}
+
+@keyframes arrow{
+0% {opacity:0}
+25% {opacity:1}
+75% {opacity:0}
+100% {opacity:0}
+}
+
+@-webkit-keyframes arrow{
+0% {opacity:0}
+25% {opacity:1}
+75% {opacity:0}
+100% {opacity:0}
+}
+
+.arrow path.a1{
+	animation-delay:-1s;
+	-webkit-animation-delay:-1s; 
+}
+
+.arrow path.a2{
+	animation-delay:-.5s;
+	-webkit-animation-delay:-.5s;
+}
+
+.arrow path.a3{	
+	animation-delay:0s;
+	-webkit-animation-delay:0s;
+}
+
+/*//////////////////////////////////////////////*/
+
+h1 {
+  font-size: 5em;
+  margin: 0px;
+  text-align: center;
+  padding: 0px;
+}
+h3 {
+  margin: 0px;
+  padding: 0px;
+  color: #999;
+  text-align: center;
+}
+
+#lh{
+	margin-top: 5%;
+}
+#lth{
+	font-size: 1em;
+}
+
+#logdiv{
+	margin-top: 10%;
+}
+
+#logcopy{
+	margin-top:12%;
+}
+#leadcopy{
+	position: fixed;
+	top: 95%;
+	left:45%;
+}
+#imageup{
+}
+
+div.wrap {
+  width: 30%;
+  background-color: rgba(0,0,0,0.7);
+  border-radius: 10px;
+  vertical-align: middle;
+}
+
+div.wrap div {
+  position: relative;
+  margin: 50px 0;
+}
+
+label {
+  position: absolute;
+  top: 0px;
+  font-size: 1.5em;
+  margin: 10px;
+ 
+  padding: 0 10px;
+
+  -webkit-transition: top .2s ease-in-out, 
+                      font-size .2s ease-in-out;
+  transition: top .2s ease-in-out, 
+              font-size .2s ease-in-out;
+}
+
+.active {
+  top: -30px;
+  font-size: 1em;
+}
+
+input[type=text] ,input[type=password] {
+  width: 100%;
+  padding: 20px;
+  border: 1px solid white;
+  font-size: 2em;
+  background-color: rgba(0,0,0,0.6);
+} 
+
+input[type=text]:focus {
+  outline: none;
+}
+input[type=password] {
+  font-size: 2em;
+}
+input[type=submit]{
+	background-color:rgba(0,0,0,0.6);
+	border:2px #ff6432 dotted;
+	font-size: 1.5em;
+	width:160px;
+	height:50px;
+	border-radius: 7px;
+}
+
+input[type=submit]:hover{
+	background-color:rgba(0,0,0,0.6);
+	border:2px #fff dotted;
+	font-size: 1.6em;
+	width:180px;
+	height:60px;
+}
+
+#tab{
+	background-color:rgba(0,0,0,0.7);
+	text-align:center;
+	border-radius:10px;
+	margin:20px;
+	margin-left:10%;
+	padding: 30px;
+}
+
+th{
+	font-size: 2em;
+}
+
+td{
+	font-size: 1.7em;
+}
+
+td>input[type=text]{
+	width: 200px;
+	height: 30px;
+	border-radius: 3px;
+	border:1px grey dotted;
+	font-size: 1em;
+}
+
+input[type=text]:focus{
+	padding-left: 20px;
+}
+
+#imgcont{
+	width: 90%;
+}
+
+/*////////////////////*/
+
+@media only screen and (max-width: 1200px) {
+
+   div.wrap{
+   	width: 50%;
+   	margin-right: auto;
+   	margin-left: auto;
+   }
+}
+
+
+@media only screen and (min-width: 1200px) {
+	
+	#messages{
+		width: 10%;
+	}
+
+	#ab{
+		margin-top: 280px;
+	}
+	.container{
+		text-align: center;
+	}
+   div.wrap{
+   	position: relative;
+   	left:24.5%;	
+   	padding: 30px;
+   	width: 50%;
+   }
+}
+
+
+
+@media only screen and (max-width: 768px) {
+	#ab{
+		margin-top: 120px;
+	}
+	#fa{
+		margin-top: 120px;
+	}
+	#main{
+		margin-top:10em;
+	}
+	#lth{
+		font-size: 0.7em;
+	}
+
+	#about{
+		margin-top: 
+	}
+	.arrow{
+		margin-top: 3em;
+	}
+	#messages{
+		width: 60%;
+	}
+
+
+	h1{
+		font-size: 3em;
+	}
+	#lh{
+		margin-top: 20%;
+	}
+
+	tbody{
+		font-size: 0.7em;
+	}
+	td>input[type=text]{
+		font-size: 1.1em;
+	}
+	#logdiv{
+		margin-top: 20%;
+	}
+	#logcopy{
+		margin-top:24%;
+	}
+	#leadcopy{
+		position: fixed;
+		top: 95%;
+		left:27%;
+	}
+	label{
+		font-size: 1.2em;
+	}
+	
+	h3{
+		font-size: 1.2em;
+	}
+	div.wrap div{
+		height: 10%;
+		margin:30px;
+	}
+
+   div.wrap{
+   	margin-top: 50px;
+   	width: 100%;
+   	margin-right: auto;
+   	margin-left: auto;
+   }
+   input[type=submit]{
+   	width: 120px;
+   	height: 40px;
+   }
+   #tab{
+   	margin: 0;
+   }
+
+   .sm{
+   	font-size: 1.5em;
+   }
+   .table-responsive{
+   	border:2px grey dotted;
+   	border-radius: 5px;
+   }
+   #imgcont{
+   	width: 100%;
+   }
+}
+
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+    width: 0px;
+}
+
+::-webkit-scrollbar:horizontal {
+    height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;  
+    background-color: #ffffff; 
+}
+
+
+
+
+
+
+/*///////////////////////////////////////////////////////*/

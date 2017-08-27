@@ -1,0 +1,53 @@
+extends layout
+
+block content
+	#main.container(style='margin-bottom:10%;background-color:transparent;text-align:center;')
+		.jumbotron(style='background-color:rgba(0,0,0,0.7);')
+
+			h1 Aficionados
+				span(style="font-size:0.25em;")
+					em {beta}
+			p(style='text-align:right;width:80%;font-size:1.2em;')
+				em -NITG's CodeCult.
+			p(style="color:grey;") Only perfect practice is gonna make you perfect.Period.
+			p with ♥ from 
+				a(href="https://captainfreak.github.io" target="_blank" id="freak",style="color:grey;") CaptainFreak.	
+	a(href="#about")
+		svg.arrow
+			path.a1(d="M0 0 L30 32 L60 0") 							
+			path.a2(d="M0 20 L30 52 L60 20") 							
+			path.a3(d="M0 40 L30 72 L60 40")
+
+	div(id="about" style="padding-top:10px;")
+		#ab.container( style="border: 5px #ff6432 dotted;text-align:center;width:90%; height:400px;border-radius:10px;margin-bottom:230px;background-color:rgba(0,0,0,0.7);")
+			h2(style="font-size:3em;") [ About ]
+			p These webspace is for creating healthy competitive environment in the campus.	
+	
+	div(id="faq" style="padding-top:10px;")
+		#fa.container( style="border: 5px #ff6432 dotted;text-align:center;width:90%; height:400px;border-radius:10px;margin-bottom:200px;background-color:rgba(0,0,0,0.7);")
+			h2(style="font-size:3em;") [ FAQ ]
+			p These webspace is for creating healthy competitive environment in the campus.	
+
+	.container
+		.row
+			.col-md-6(style="text-align:center;padding-top:20px;")
+				h3 Contact
+				p(style="font-size:1.2em;") patelshoeb4[at]gmail[dot]com
+			.col-md-6(style="text-align:center;")
+				h3 Social
+				ul(style="padding-left:10px;").list-inline
+					li(style="margin-right:10px;")
+						a.btn-social.btn-outline(href='/')
+							span.sr-only Facebook
+							i.fa.fa-facebook-square(style="font-size:48px;color:#ff6432")
+					li(style="margin-right:10px;")
+						a.btn-social.btn-outline(href='/')
+							span.sr-only Facebook
+							i.fa.fa-instagram(style="font-size:48px;color:#ff6432")
+					li(style="margin-right:10px;")
+						a.btn-social.btn-outline(href='/')
+							span.sr-only Facebook
+							i.fa.fa-github(style="font-size:48px;color:#ff6432")														
+	p(style="text-align:center;margin-bottom:30px;margin-top:50px;") Copyright &copy Aficionados 2017 
+				
+

@@ -1,0 +1,33 @@
+extends layout
+
+block content
+	.container(style="margin-top:80px;background-color:rgba(0,0,0,0.6);text-align:center;")
+		ul(style="text-align:left;").errors
+			if errors
+				each error, i in errors
+					li(style="background-color:transparent;width:auto;border:0;").alert.alert-danger #{error.msg+'*'}
+
+		.wrap
+			h1 Edit
+			h4 .. start editing your profile ..
+
+			form.form(method='post',action='/users/#{username}/edit')
+				div
+					label(for='name') Name:
+					input#name.cool(name='name',type='text',value='#{name}')
+				div
+					label(for='username') Userame:
+					input#username.cool(name='username',type='text',value='#{username}')					
+				div
+					label(for='email') Email:
+					input#email.cool(name='email',type='text',value='#{email}')
+				div
+					label(for='bio') Bio:
+					input#bio.cool(name='bio',type='text',value='#{bio}')
+				div
+					label(for='interest') Interest:
+					input#interest.cool(name='interests',type='text',value='#{interests}')					
+				div(style="text-align:center;")
+					input#submit.cool(name='submit',value='Submit',type='submit')
+
+	p(style="text-align:center;margin-bottom:30px;margin-top:0px;") Copyright &copy Aficionados 2017 

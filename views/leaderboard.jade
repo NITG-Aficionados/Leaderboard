@@ -1,0 +1,40 @@
+extends layout
+
+block content
+	h1#lh LeaderBoard
+	h3(style="margin-bottom:2%;")  -----X-----
+	.container(style="background-color:rgba(0,0,0,0.7);border-radius:10px;width:90%;")
+		.table-responsive
+			table.table
+				thead
+					tr#lth
+						th(style="text-align:center;") Rank
+						th(style="text-align:center;") User
+						th(style="text-align:center;") CodeForces
+						th(style="text-align:center;") TopCoder
+						th(style="text-align:center;") CodeChef
+						th(style="text-align:center;") HackerRank
+						th(style="text-align:center;") HackerEarth
+						th(style="text-align:center;") Ratings
+
+
+				if profiles
+					for profile in profiles	
+						tbody(style="border-top:2px #ff6432 dotted;")
+							tr
+								td=profile.cr
+								td
+									a(href="/users/#{profile.username}")=profile.username
+								td
+									a(href="http://codeforces.com/profile/#{profile.cfh}",target="_blank")=profile.cfh
+								td
+									a(href="https://www.topcoder.com/members/#{profile.tch}",target="_blank")=profile.tch
+								td
+									a(href="https://www.codechef.com/users/#{profile.cch}",target="_blank")=profile.cch
+								td
+									a(href="https://www.hackerrank.com/#{profile.hrh}",target="_blank")=profile.hrh
+								td
+									a(href="https://www.hackerearth.com/@#{profile.heh}",target="_blank")=profile.heh																				
+								td=profile.index
+	p#leadcopy(style="text-align:center;margin-bottom:30px;") Copyright &copy Aficionados 2017		
+
