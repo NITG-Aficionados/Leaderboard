@@ -24,6 +24,15 @@ router.get('/leaderboard',function(req,res){
 			return -(parseFloat(a.index)-parseFloat(b.index));
 		});
 
+		for(var i=0;i<p.length;++i){
+			console.log(p[i].username);
+			Profile.updateRanking(p[i].username,i+1,function(err,profile){
+
+				if(err) throw err;
+				console.log(profile);
+			});
+		}		
+
 		res.render('leaderboard',{profiles:p});
 	});
 
