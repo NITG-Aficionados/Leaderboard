@@ -271,6 +271,7 @@ input[type=submit]:hover{
 	margin:20px;
 	margin-left:3%;
 	padding: 30px;
+	width: 100%;
 }
 
 th{
@@ -296,6 +297,7 @@ input[type=text]:focus{
 #imgcont{
 	width: 100%;
 	padding: 0px;
+	margin-left: 2%;
 }
 
 /*////////////////////*/
