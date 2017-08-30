@@ -380,11 +380,7 @@ input[type=text]:focus{
 	#logcopy{
 		margin-top:24%;
 	}
-	#leadcopy{
-		position: fixed;
-		top: 95%;
-		left:27%;
-	}
+
 	label{
 		font-size: 1.2em;
 	}
