@@ -1,6 +1,6 @@
 var mongoose=require('mongoose');
 var bcrypt=require('bcrypt');
-mongoose.connect('mongodb://localhost/nodeauth');
+mongoose.connect('mongodb://admin:Afficionadoiam@ds111754.mlab.com:11754/leaderboard');
 var db=mongoose.connect;
 
 var UserSchema=mongoose.Schema({
