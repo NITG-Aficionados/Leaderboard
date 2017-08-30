@@ -13,19 +13,19 @@ block content
 
 			form.form(method='post',action='/users/#{username}/edit')
 				div
-					label(for='name') Name:
+					label.coo(for='name') Name:
 					input#name.cool(name='name',type='text',value='#{name}')
 				div
-					label(for='username') Userame:
+					label.coo(for='username') Userame:
 					input#username.cool(name='username',type='text',value='#{username}')					
 				div
-					label(for='email') Email:
+					label.coo(for='email') Email:
 					input#email.cool(name='email',type='text',value='#{email}')
 				div
-					label(for='bio') Bio:
+					label.coo(for='bio') Bio:
 					input#bio.cool(name='bio',type='text',value='#{bio}')
 				div
-					label(for='interest') Interest:
+					label.coo(for='interest') Interest:
 					input#interest.cool(name='interests',type='text',value='#{interests}')					
 				div(style="text-align:center;")
 					input#submit.cool(name='submit',value='Submit',type='submit')

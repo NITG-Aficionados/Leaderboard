@@ -26,23 +26,43 @@ block content
 								th(style="text-align:center;") Ratings
 						tbody
 							tr
-								td Codeforces
+								td 
+									if cfh!="----"
+										a(href="http://codeforces.com/profile/#{cfh}",target="_blank") Codeforces
+									else
+										p Codeforces
 								td
 									p#cfr=cfr				
 							tr
-								td TopCoder
+								td
+									if tch!="----"
+											a(href="http://codeforces.com/profile/#{tch}",target="_blank") TopCoder
+										else
+											p Codeforces
 								td
 									p=tcr				
 							tr
-								td CodeChef
+								td
+									if cch!="----"
+											a(href="http://codeforces.com/profile/#{cch}",target="_blank") CodeChef
+										else
+											p Codeforces
 								td
 									p#ccr=ccr				
 							tr
-								td Hackerrank
+								td
+									if hrh!="----"
+											a(href="http://codeforces.com/profile/#{hrh}",target="_blank") Hackerrank
+										else
+											p Codeforces
 								td
 									p#hrr=hrr				
 							tr
-								td Hackerearth
+								td
+									if heh!="----"
+											a(href="http://codeforces.com/profile/#{heh}",target="_blank") HackerEarth
+										else
+											p Codeforces
 								td
 									p#her=her
 				hr(style="border:2px #ff6432 dotted")									

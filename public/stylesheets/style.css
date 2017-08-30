@@ -30,6 +30,10 @@ html, body {
 #faq{
 	margin-top:150px;
 }
+#logo{
+	height: 150px;
+	width: 150px;
+}
 h1{
     font-size: 2em;
     font-family: 'Ubuntu Mono';
@@ -218,6 +222,11 @@ label {
   transition: top .2s ease-in-out, 
               font-size .2s ease-in-out;
 }
+.coo{
+  top: -30px;
+  font-size: 1em;
+
+}
 
 .active {
   top: -30px;
@@ -330,7 +339,11 @@ input[type=text]:focus{
 		margin-top: 120px;
 	}
 	#main{
-		margin-top:10em;
+		margin-top:5em;
+	}
+	#logo{
+		height: 100px;
+		width: 100px;
 	}
 	#lth{
 		font-size: 0.7em;
@@ -340,7 +353,7 @@ input[type=text]:focus{
 		margin-top: 
 	}
 	.arrow{
-		margin-top: 3em;
+		margin-top: 1em;
 	}
 	#messages{
 		width: 60%;
