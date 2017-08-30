@@ -190,9 +190,8 @@ h3 {
 	margin-top:12%;
 }
 #leadcopy{
-	position: fixed;
-	top: 95%;
-	left:45%;
+	text-align: center;
+	margin-top: 20px;
 }
 #imageup{
 }
