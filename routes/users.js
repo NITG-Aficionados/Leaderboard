@@ -453,7 +453,10 @@ router.get('/:username/refresh',function(req,res){
 	 	res.send({"ind":profile.ind,"cr":profile.cr});
 
 	});*/	
-res.send("Refreshed");
+
+//	res.redirect('/users/'+username);
+		res.location('/users/'+req.params.username,);
+		res.redirect('/users/'+req.params.username,);
 
 });
 
