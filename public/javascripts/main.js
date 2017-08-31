@@ -128,6 +128,8 @@ $("#rb").click(function(){
 
     }});
 window.location.reload();
+window.location.reload();
+window.location.reload();
 
 });
 
