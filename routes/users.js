@@ -372,15 +372,15 @@ router.get('/:username/hr/:handle',function(req,res){
   		extract: 'text'
 	})
 	.then(function (results) {
-  		console.log(results.results[0].results[65]);
-  		var rater=["hrr",results.results[0].results[65]];
+  		console.log(results.results[0].results[62]);
+  		var rater=["hrr",results.results[0].results[62]];
   		
   		Profile.updateRatings(req.params.username,rater,function(err,profile){
 			if (err) throw err;
 			console.log(profile);
 		});
 
-  		res.send(results.results[0].results[65].toString());
+  		res.send(results.results[0].results[62].toString());
   		
 	});
 
