@@ -1,7 +1,8 @@
 # Leaderboard
 Typical LeaderBoard.
 # Developer Docs
-Setup:
+Setup:<br/>
+
 0. Install [NodeJS](https://nodejs.org/en/download/package-manager/).
 1. Install [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/).
 2. `npm install -g nodemon`
