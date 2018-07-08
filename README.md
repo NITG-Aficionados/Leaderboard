@@ -17,4 +17,8 @@ Setup:<br/>
 11. Submit PR.
 
 ***NOTE: Prefer Linux or do your own setup.***
+Also, Open Source can be intimidating if you think that you dont know the tech of project,code-style,flow,design-patterns.But in reality ***it just needs a first PR to get used to it.*** So while adding code for new feature, you just have to look up the existing code, understand what code might be where(guess that based on filenames),Use the same code snippets and its style for doing other things. I hope its clear.For ex. If you wanna write code for DB insert, update etc. then look how existing code is doing it. If you find relevant code snippet(If you dont then go Googling.), copy it.modify it. make it work.test it. commit it.PR it. Thats it.
+
+Enjoy Contributing. :)
+
 
