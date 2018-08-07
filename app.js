@@ -20,6 +20,20 @@ var users = require('./routes/users');
 
 var app = express();
 
+
+
+var MongoClient = mongo.MongoClient;
+var url = "mongodb://localhost:27017/leaderboard";
+
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  console.log("Database connected!!");
+  db.close();
+});
+
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
