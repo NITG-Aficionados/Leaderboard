@@ -6,8 +6,8 @@ var User = require('../models/user.js')
 var Profile = require('../models/profile.js');
 var noodle = require('noodlejs');
 var request = require('request');
-var path = require('path')
-var multer = require('multer')
+var path = require('path');
+var multer = require('multer');
 
 
 /* GET users listing. */
@@ -48,10 +48,12 @@ router.post('/register', function (req, res, next) {
     req.checkBody('email', 'Email is Invalid.').isEmail();
     req.checkBody('username', 'Username field is required.').notEmpty();
     req.checkBody('password', 'Password field is required.').notEmpty();
-    req.checkBody('password2', 'Passwords do not match.').equals(req.body.password);
+    req.checkBody('verify', 'Passwords do not match.').equals(req.body.password);
 
     var errors = req.validationErrors();
+    // var errors = req.getValidationResult();
 
+    console.log(errors);
     if (errors) {
         res.render('register', {
             errors: errors,
@@ -92,6 +94,7 @@ router.post('/register', function (req, res, next) {
             cnr: 200,
             img: "noimage.jpg"
         });
+        // console.log(newUser, newProfile);
 
         User.createUser(newUser, function (err, user) {
             if (err) throw err;
