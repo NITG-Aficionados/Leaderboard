@@ -6,7 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "bcrypt": "^1.0.2",
+    "bcrypt": "^3.0.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "~1.17.1",
     "connect-flash": "*",
@@ -22,12 +22,12 @@
     "morgan": "~1.8.1",
     "multer": "*",
     "nodemailer": "*",
+    "noodlejs": "*",
     "passport": "*",
     "passport-http": "*",
     "passport-local": "*",
-    "serve-favicon": "~2.4.2",
-    "noodlejs": "*",
-    "request": "*"
+    "request": "*",
+    "serve-favicon": "~2.4.2"
   },
   "engines": {
     "node": "8.4.0",
