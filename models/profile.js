@@ -1,6 +1,6 @@
 var mongoose=require('mongoose');
-mongoose.connect('mongodb://localhost/leaderboard');
-var db=mongoose.connect;
+// mongoose.connect('mongodb://localhost/leaderboard');
+// var db=mongoose.connect;
 
 var ProfileSchema=mongoose.Schema({
 	username:{
@@ -34,7 +34,7 @@ var ProfileSchema=mongoose.Schema({
 	},
 	heh:{
 		type:String
-	},	
+	},
 	cfr:{
 		type:Number
 	},
@@ -61,7 +61,7 @@ var ProfileSchema=mongoose.Schema({
 	},
 	img:{
 		type:String
-	}			
+	}
 });
 
 var Profile=module.exports=mongoose.model('Profile',ProfileSchema);

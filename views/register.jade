@@ -1,35 +1,68 @@
 extends layout
 
 block content
-	.container(style="margin-top:80px;background-color:rgba(0,0,0,0.6);text-align:center;")
-		ul(style="text-align:left;").errors
-			if errors
-				each error, i in errors
-					li(style="background-color:transparent;width:auto;border:0;").alert.alert-danger #{error.msg+'*'}
+    .container(style="margin-top:80px;background-color:rgba(0,0,0,0.6);text-align:center;")
+        ul(style="text-align:left;").errors
+            if errors
+                each error, i in errors
+                    li(style="background-color:transparent;width:auto;border:0;").alert.alert-danger #{error.msg + '*'}
 
-		.wrap
-			h1 Register
-			h3 .. Lets Get Started ..
+        .wrap
+            h1 Register
+            h3 .. Lets Get Started ..
 
-			form(method='post',action='/users/register')
-				div
-					label(for='name') Name
-					input#name.cool(name='name',type='text')
-				div
-					label(for='uname') Username
-					input#uname.cool(name='username',type='text')
-				div
-					label(for='email') Email
-					input#email.cool(name='email',type='text')
-				div
-					label(for='password') Password
-					input#passwd.cool(name='password',type='password')
-				div
-					label(for='password2') Confirm Password
-					input#passwd.cool(name="password2",type='password')
-				div(style="text-align:center;")
-					input#submit.cool(name='submit',value='Submit',type='submit')			
-	p(style="text-align:center;margin-bottom:30px;margin-top:0px;") Copyright &copy Aficionados 2017 		
+            form(method='post',action='/users/register')
+                div
+                    label(for='name') Name
+                    input#name.cool(name='name',type='text')
+                div
+                    label(for='uname') Username
+                    input#uname.cool(name='username',type='text')
+                div
+                    label(for='email') Email
+                    input#email.cool(name='email',type='text')
+                div
+                    label(for='password') Password
+                    input#password.cool(name='password',type='password', required=true)
 
-					
+                div
+                    label(for='password2') Confirm Password
+                    input#verify.cool(name="verify",type='password', onkeyup="verifyPassword(this)", required=true)
+                    p#verify_message.cool(class="help-block")
+                div(style="text-align:center;")
+                    input#submit.cool(name='submit',value='Submit',type='submit')
+    p(style="text-align:center;margin-bottom:30px;margin-top:0px;") Copyright &copy Aficionados 2017
+    script(src="/javascripts/PassRequirements.js")
+    script.
+        $("#password").PassRequirements({
+            rules: {
+                minlength: {
+                    text: "be at least minLength characters long",
+                    minLength: 8,
+                },
+                containLowercase: {
+                    text: "Your input should contain at least minLength lower case character",
+                    minLength: 1,
+                    regex: new RegExp('[^a-z]', 'g')
+                },
+                containNumbers: {
+                    text: "Your input should contain at least minLength number",
+                    minLength: 1,
+                    regex: new RegExp('[^0-9]', 'g')
+                }
+            },
+            defaults: false
+
+        });
+        function verifyPassword(obj) {
+            if (obj.value != $("#password").val()) {
+                $("#verify_message").text("Passwords do not match");
+                $(':input[id="submit"]').prop('disabled', true).css("color", "grey").css("border-color", "grey");
+            }
+            else {
+                $("#verify_message").text("");
+                $(':input[id="submit"]').prop('disabled', false).css("color", "red").css("border-color", "red");
+            }
+
+        }
 
