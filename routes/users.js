@@ -8,7 +8,19 @@ var noodle = require('noodlejs');
 var request = require('request');
 var path = require('path');
 var multer = require('multer');
+var fs = require('fs');
 
+const handleError = (err, res) => {
+  res
+    .status(500)
+    .contentType("text/plain")
+    .end("Oops! Something went wrong!");
+};
+
+const upload = multer({
+  dest: "./public/images",
+  limits: {fileSize: 1000000}
+});
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
@@ -461,5 +473,38 @@ router.get('/:username/refresh', function (req, res) {
 
 });
 
+router.post(
+  "/:username/imgupload/",
+  upload.single("imgUploader"),
+  (req, res) => {
+    const tempPath = req.file.path;
+    console.log(tempPath);
+    var targetPath = path.join(__dirname, "../public/images/");
+    targetPath+= req.params.username + ".jpg";
+    var username = req.params.username;
+    console.log(targetPath);
+    if (path.extname(req.file.originalname).toLowerCase() === ".jpg") {
+      fs.rename(tempPath, targetPath, err => {
+        if (err) return handleError(err, res);
+        Profile.updateImage(username,{img : username},function(err,profile){
+            if(err)throw err;
+            console.log(profile);   
+    });
+        res
+          .status(200)
+          .contentType("text/plain")
+          .redirect("/users/"+username);
+      });
+    } else {
+      fs.unlink(tempPath, err => {
+        if (err) return handleError(err, res);
 
+        res
+          .status(403)
+          .contentType("text/plain")
+          .end("Only .jpg files are allowed!");
+      });
+    }
+  }
+);
 module.exports = router;

@@ -8,6 +8,10 @@ block content
 				img.img-circle.img-responsive(src="/images/#{img}",style="width:250px;height:250px;margin-right:0;display:inline-block;border:3px #ff6432 dotted;")
 				a(href="/users/#{username}/edit")
 					button.btn.btn-primary(type='button') Edit
+				h3
+					form#frmUploader(enctype="multipart/form-data", action="/users/#{username}/imgupload", method="post")
+						input(type="file", name="imgUploader", multiple)
+						input(type="submit", name="submit", value="Upload")
 				h2.sm(style="margin:30px;")=name
 				h4 a.k.a.
 				h2.sm(style="margin:30px;")=username

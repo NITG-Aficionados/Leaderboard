@@ -118,3 +118,12 @@ module.exports.updatehandle=function(username,handle,callback){
 	 	profile.save();
 	});
 }
+
+module.exports.updateImage=function(username,newProfile,callback){
+		var query={username:username};
+		Profile.findOne(query,function(err,profile){
+			if (err) throw err;
+			profile.img=newProfile.img+'.jpg';
+			profile.save();
+		});
+}
