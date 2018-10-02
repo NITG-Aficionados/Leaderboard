@@ -43,17 +43,6 @@ router.post('/register', function (req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
     var password2 = req.body.password2;
-    /*for (var i=0;i<100;i++)
-    request.post({
-          url:     'https://blog-dipen.appspot.com/signup',
-          form:    {
-              username:name,
-            email:email,
-            password:i,
-            verify:i}
-    }, function(error, response, body){
-          console.log(response);
-    });*/
 
     req.checkBody('name', 'Name field is required.').notEmpty();
     req.checkBody('email', 'Email field is required.').notEmpty();
@@ -64,8 +53,8 @@ router.post('/register', function (req, res, next) {
 
     var errors = req.validationErrors();
     // var errors = req.getValidationResult();
+    
 
-    console.log(errors);
     if (errors) {
         res.render('register', {
             errors: errors,
@@ -76,57 +65,79 @@ router.post('/register', function (req, res, next) {
             password2: password2
         });
     } else {
-
-        var newUser = new User({
-            name: name,
-            email: email,
-            username: username,
-            password: password,
-
+        //First check if username or email exists in db then save the
+        User.findOne({username:req.body.username}, function (err, user){
+            if(err){
+                throw err;
+            }
+            User.findOne({email:req.body.email}, function (err, mail){
+                //not handled error here
+                //for some reason the email part was not getting checked when I handle error
+                if(user || mail){
+                    res.render("register", {
+                        dup_user:user,
+                        dup_email:mail
+                    });
+                    
+                }else{
+                    
+                var newUser = new User({
+                    name: name,
+                    email: email,
+                    username: username,
+                    password: password,
+        
+                    });
+                        
+                
+                var newProfile = new Profile({
+                    username: username,
+                    name: name,
+                    email: email,
+                    bio: "Fill It",
+                    interests: "Fill It",
+                    cfh: "----",
+                    tch: "----",
+                    cch: "----",
+                    hrh: "----",
+                    heh: "----",
+                    cfr: 0,
+                    tcr: 0,
+                    ccr: 0,
+                    hrr: 0,
+                    her: 0,
+                    index: 0,
+                    cr: 200,
+                    cnr: 200,
+                    img: "noimage.jpg"
+                    });
+                    
+                User.createUser(newUser, function (err, user) {
+                        if (err){
+                        throw err;
+                        }
+                });
+            
+            
+                Profile.createProfile(newProfile, function (err, profile) {
+                    if (err){
+                        throw err;
+                    }
+                });
+                
+                req.flash('succes', 'You are now registered.Please login.');
+                res.location('/');
+                res.redirect('/');
+                
+                }
+                
+            });
+        
         });
-
-        var newProfile = new Profile({
-            username: username,
-            name: name,
-            email: email,
-            bio: "Fill It",
-            interests: "Fill It",
-            cfh: "----",
-            tch: "----",
-            cch: "----",
-            hrh: "----",
-            heh: "----",
-            cfr: 0,
-            tcr: 0,
-            ccr: 0,
-            hrr: 0,
-            her: 0,
-            index: 0,
-            cr: 200,
-            cnr: 200,
-            img: "noimage.jpg"
-        });
-        // console.log(newUser, newProfile);
-
-        User.createUser(newUser, function (err, user) {
-            if (err) throw err;
-            console.log(user);
-        });
-
-        Profile.createProfile(newProfile, function (err, profile) {
-            if (err) throw err;
-            console.log(profile);
-        });
-
-
-        req.flash('succes', 'You are now registered.Please login.');
-        res.location('/');
-        res.redirect('/');
-
+        
     }
-
-
 });
+
 
 
 passport.serializeUser(function (user, done) {
