@@ -490,6 +490,7 @@ router.post(
   (req, res) => {
 
     if(!req.file){
+	req.flash('errorMessage', 'Please select a file to upload.');
         res.redirect("/users/"+req.params.username);
     }
 
@@ -506,6 +507,7 @@ router.post(
             if(err)throw err;
             console.log(profile);   
     });
+	req.flash('successMessage', 'Profile pic updated sucessfully.');
         res
           .status(200)
           .contentType("text/plain")
