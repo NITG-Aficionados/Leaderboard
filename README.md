@@ -10,6 +10,8 @@ Setup:<br/>
 4. Fork the repo. 
 5. `git clone https://github.com/yourUsername/yourFork.git`
 6. `cd Leaderboard`
+7. `npm install`
+8. `git checkout develop`
 7. `nodemon`
 8. C0d3.
 9. Commit locally
