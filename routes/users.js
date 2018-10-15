@@ -488,6 +488,11 @@ router.post(
   "/:username/imgupload/",
   upload.single("imgUploader"),
   (req, res) => {
+
+    if(!req.file){
+        res.redirect("/users/"+req.params.username);
+    }
+
     const tempPath = req.file.path;
     console.log(tempPath);
     var targetPath = path.join(__dirname, "../public/images/");
