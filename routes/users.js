@@ -488,6 +488,12 @@ router.post(
   "/:username/imgupload/",
   upload.single("imgUploader"),
   (req, res) => {
+
+    if(!req.file){
+	req.flash('errorMessage', 'Please select a file to upload.');
+        res.redirect("/users/"+req.params.username);
+    }
+
     const tempPath = req.file.path;
     console.log(tempPath);
     var targetPath = path.join(__dirname, "../public/images/");
@@ -501,6 +507,7 @@ router.post(
             if(err)throw err;
             console.log(profile);   
     });
+	req.flash('successMessage', 'Profile pic updated sucessfully.');
         res
           .status(200)
           .contentType("text/plain")
