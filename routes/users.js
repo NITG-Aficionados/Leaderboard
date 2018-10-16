@@ -1,14 +1,14 @@
-var express = require('express');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var router = express.Router();
-var User = require('../models/user.js')
-var Profile = require('../models/profile.js');
-var noodle = require('noodlejs');
-var request = require('request');
-var path = require('path');
-var multer = require('multer');
-
+let express = require('express');
+let passport = require('passport');
+let LocalStrategy = require('passport-local').Strategy;
+let router = express.Router();
+let User = require('../models/user.js');
+let Profile = require('../models/profile.js');
+let noodle = require('noodlejs');
+let request = require('request');
+let path = require('path');
+let multer = require('multer');
+let app = require('../app');
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
@@ -26,22 +26,12 @@ router.get('/login', function (req, res, next) {
 
 
 router.post('/register', function (req, res, next) {
+    // console.log(req.body);
     var name = req.body.name;
     var email = req.body.email;
     var username = req.body.username;
     var password = req.body.password;
     var password2 = req.body.password2;
-    /*for (var i=0;i<100;i++)
-    request.post({
-          url:     'https://blog-dipen.appspot.com/signup',
-          form:    {
-              username:name,
-            email:email,
-            password:i,
-            verify:i}
-    }, function(error, response, body){
-          console.log(response);
-    });*/
 
     req.checkBody('name', 'Name field is required.').notEmpty();
     req.checkBody('email', 'Email field is required.').notEmpty();
@@ -73,47 +63,88 @@ router.post('/register', function (req, res, next) {
 
         });
 
-        var newProfile = new Profile({
-            username: username,
-            name: name,
-            email: email,
-            bio: "Fill It",
-            interests: "Fill It",
-            cfh: "----",
-            tch: "----",
-            cch: "----",
-            hrh: "----",
-            heh: "----",
-            cfr: 0,
-            tcr: 0,
-            ccr: 0,
-            hrr: 0,
-            her: 0,
-            index: 0,
-            cr: 200,
-            cnr: 200,
-            img: "noimage.jpg"
-        });
         // console.log(newUser, newProfile);
 
-        User.createUser(newUser, function (err, user) {
-            if (err) throw err;
-            console.log(user);
+        // User.createUser(newUser, function (err, user) {
+        //     if (err) throw err;
+        //     console.log(user);
+        // });
+        //
+        // Profile.createProfile(newProfile, function (err, profile) {
+        //     if (err) throw err;
+        //     console.log(profile);
+        // });
+        let nev = app.nev;
+        // console.log(nev, "hello");
+
+        nev.createTempUser(newUser, function (err, existingPersistentUser, newTempUser) {
+            if (err) {
+                console.log("Error:" + err);
+                res.status(400).end();
+            }
+
+            if (existingPersistentUser) {
+                console.log("Persisting Error : " + existingPersistentUser);
+                res.status(400).end();
+            }
+
+            if (newTempUser) {
+                var URL = newTempUser[nev.options.URLFieldName];
+
+                nev.sendVerificationEmail(email, URL, function(err, info) {
+                    if (err)
+                    {
+                        console.log(err);
+                        req.flash('Error', 'Some error happened while registering you. Please try again later!!');
+
+                    }
+                    else
+                    {
+                        console.log(info);
+                        req.flash('succes', 'You are now registered.Please activate your account by clicking on the link sent to your mail.');
+                    }
+
+                    res.location('/');
+                    res.redirect('/');
+                });
+
+
+            } else {
+                console.log("Error creating temp user");
+                res.status(400).end();
+            }
         });
 
-        Profile.createProfile(newProfile, function (err, profile) {
-            if (err) throw err;
-            console.log(profile);
-        });
 
 
-        req.flash('succes', 'You are now registered.Please login.');
-        res.location('/');
-        res.redirect('/');
 
     }
 
 
+});
+
+
+router.get('/user-verification/[a-z0-9]+$', function (req, res, next) {
+    let url = req.url.split('/');
+    // console.log(url[url.length - 1]);
+    let nev = app.nev;
+
+    nev.confirmTempUser(url[url.length - 1], function (err, user) {
+        if(err)
+            throw err;
+        if(user) {
+
+            res.redirect("/users/login");
+
+        }
+        else
+        {
+            console.log("User not found");
+            res.redirect('/');
+        }
+    });
+
+    // res.redirect('/');
 });
 
 

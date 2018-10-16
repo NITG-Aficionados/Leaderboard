@@ -14,8 +14,8 @@ let flash = require('connect-flash');
 let mongo = require('mongodb');
 let mongoose = require('mongoose');
 let db = mongoose.connection;
-
-
+let User = require('./models/user');
+let nev = require('email-verification')(mongoose);
 let index = require('./routes/index');
 let users = require('./routes/users');
 
@@ -23,7 +23,7 @@ let users = require('./routes/users');
 let app = express();
 
 
-let url = "mongodb://localhost:27017/leaderboard";
+let url = "mongodb://127.0.0.1:27017/leaderboard";
 
 
 mongoose.connect(url);
@@ -39,6 +39,37 @@ mongoose.connection.on("error" , function()
     console.log("Database connected;")
 });
 
+// Configuration for email verification module
+
+nev.configure({
+    verificationURL: 'http://localhost:3000/users/user-verification/${URL}',
+    persistentUserModel: User,
+    tempUserCollection: 'unverifiedUsers',
+
+    transportOptions: {
+        service: 'Gmail',
+        auth: {
+            user: 'dipenbhatt12@gmail.com',
+            pass: 'dragonforce98064'
+        }
+    },
+
+    verifyMailOptions: {
+        from: 'Do Not Reply <dipenbhatt12@gmail.com>',
+        subject: 'Please confirm account',
+        html: 'Click the following link to confirm your account:</p><p>${URL}</p>',
+        text: 'Please confirm your account by clicking the following link: ${URL}'
+    }
+
+}, function (error, options) {
+    
+});
+
+nev.generateTempUserModel(User, function (res, tempUser) {
+    // console.log(res, tempUser);
+});
+
+// Email verification module configuraytion ends here
 
 
 
@@ -123,4 +154,7 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
-module.exports = app;
+
+module.exports.app = app;
+module.exports.nev = nev;
+
