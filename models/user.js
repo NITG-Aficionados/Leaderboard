@@ -51,7 +51,6 @@ module.exports.createUser = function (newUser, callback) {
         newUser.password = hash;
         newUser.save(function (err, results) {
             if (err) return callback(err, null);
-            console.log("Results after hashing ::: ", results);
             newUser = results;
         });
 
@@ -81,10 +80,8 @@ module.exports.createUser = function (newUser, callback) {
 
     Profile.createProfile(newProfile, function (err, profile) {
         if (err) throw err;
-        console.log("Profile", profile);
     });
 
-    console.log("New USER ------>", newUser);
     return callback(null, newUser);
 
 

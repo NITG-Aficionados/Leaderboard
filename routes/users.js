@@ -101,7 +101,7 @@ router.post('/register', function (req, res, next) {
                     else
                     {
                         console.log(info);
-                        req.flash('succes', 'You are now registered.Please activate your account by clicking on the link sent to your mail.');
+                        req.flash('succes', 'Registered, Activate your account by clicking on the link sent to your mail.');
                     }
 
                     res.location('/');
@@ -131,20 +131,25 @@ router.get('/user-verification/[a-z0-9]+$', function (req, res, next) {
 
     nev.confirmTempUser(url[url.length - 1], function (err, user) {
         if(err)
-            throw err;
+        {
+            console.log(err);
+            return;
+        }
         if(user) {
-
+            req.flash("Success", "Account activated");
             res.redirect("/users/login");
-
+            return;
         }
         else
         {
             console.log("User not found");
+            req.flash("Error", "User not found!!");
             res.redirect('/');
+            return;
         }
     });
 
-    // res.redirect('/');
+
 });
 
 
