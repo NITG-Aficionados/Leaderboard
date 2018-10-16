@@ -1,18 +1,22 @@
 let mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
+let Profile = require('../models/profile.js');
 // mongoose.connect('mongodb://localhost/leaderboard');
 // let db=mongoose.connect;
 
 let UserSchema = mongoose.Schema({
     username: {
         type: String,
-        index: true
+        index: true,
+        unique: true,
+        required: true
     },
     password: {
         type: String, required: true, bcrypt: true
     },
     email: {
-        type: String
+        type: String,
+        required: true
     },
     name: {
         type: String
@@ -43,15 +47,44 @@ module.exports.getUserByUsername = function (username, callback) {
 module.exports.createUser = function (newUser, callback) {
 
     bcrypt.hash(newUser.password, 10, function (err, hash) {
-        if (err) throw err;
+        if (err) return callback(err, null);
         newUser.password = hash;
-        console.log(newUser);
         newUser.save(function (err, results) {
-            if (err)
-                throw err;
+            if (err) return callback(err, null);
+            newUser = results;
         });
 
+
     });
+    var newProfile = new Profile({
+        username: newUser.username,
+        name: newUser.name,
+        email: newUser.email,
+        bio: "Fill It",
+        interests: "Fill It",
+        cfh: "----",
+        tch: "----",
+        cch: "----",
+        hrh: "----",
+        heh: "----",
+        cfr: 0,
+        tcr: 0,
+        ccr: 0,
+        hrr: 0,
+        her: 0,
+        index: 0,
+        cr: 200,
+        cnr: 200,
+        img: "noimage.jpg"
+    });
+
+    Profile.createProfile(newProfile, function (err, profile) {
+        if (err) throw err;
+    });
+
+    return callback(null, newUser);
+
+
 
 };
 
