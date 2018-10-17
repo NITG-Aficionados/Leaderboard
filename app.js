@@ -49,8 +49,8 @@ nev.configure({
     transportOptions: {
         service: 'Gmail',
         auth: {
-            user: 'dipenbhatt12@gmail.com',
-            pass: 'dragonforce98064'
+            user: 'your email',
+            pass: 'your password'
         }
     },
 
