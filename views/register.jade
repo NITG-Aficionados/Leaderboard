@@ -6,12 +6,12 @@ block content
             if errors
                 each error, i in errors
                     li(style="background-color:transparent;width:auto;border:0;").alert.alert-danger #{error.msg + '*'}
-	    if dup_user
+            if dup_user
                 li(style="background-color:transparent;width:auto;border:0;").alert.alert-danger #{"This username is already taken. Try another."}
             if dup_email
                 li(style="background-color:transparent;width:auto;border:0;").alert.alert-danger #{"This email is already registered with us."}
-
-
+                    
+                    
         .wrap
             h1 Register
             h3 .. Lets Get Started ..

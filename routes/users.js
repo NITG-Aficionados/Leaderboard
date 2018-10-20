@@ -479,8 +479,8 @@ router.get('/:username/refresh', function (req, res) {
     });*/
 
 //	res.redirect('/users/'+username);
-    res.location('/users/' + req.params.username,);
-    res.redirect('/users/' + req.params.username,);
+    res.location('/users/' + req.params.username);
+    res.redirect('/users/' + req.params.username);
 
 });
 
